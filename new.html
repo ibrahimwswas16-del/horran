@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الجديد - آخر الأخبار والتعليمات - HORRAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --accent-color: #800020;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            justify-content: flex-end;
+            padding: 5px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .user-profile:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .user-profile:hover .user-avatar {
+            transform: scale(1.1);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 70%;
+            height: 100vh;
+            background-color: var(--secondary-bg);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 80px 20px 20px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-user-profile:hover {
+            background-color: #f8f9fa;
+            padding-right: 10px;
+        }
+
+        .mobile-user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-user-profile:hover .mobile-user-avatar {
+            transform: scale(1.1);
+        }
+
+        .mobile-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .mobile-user-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--accent-color), #6a001b);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 15px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* News Layout */
+        .news-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Main News Section */
+        .main-news {
+            background: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 10px;
+            color: #6a001b;
+        }
+
+        /* Featured News */
+        .featured-news {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .featured-badge {
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        /* Sidebar */
+        .news-sidebar {
+            background: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 35px;
+        }
+
+        .sidebar-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            display: block;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+
+        .quick-links a:hover {
+            background: var(--accent-color);
+            color: white;
+            border-right-color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        .update-list {
+            list-style: none;
+        }
+
+        .update-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .update-list li:last-child {
+            border-bottom: none;
+        }
+
+        .update-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .update-content {
+            flex: 1;
+        }
+
+        .update-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .update-date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .newsletter-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+        }
+
+        .newsletter-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-btn:hover {
+            background: #6a001b;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .user-profile {
+                display: none;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+            
+            .news-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .news-sidebar {
+                position: static;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                margin-top: 70px;
+            }
+            
+            .page-header {
+                padding: 40px 20px;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-news, .news-sidebar {
+                padding: 20px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <header>
+        <div class="container nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="new.html" class="active">الجديد</a></li>
+                <li><a href="index.html#services-section">خدماتنا</a></li>
+                <li><a href="faq.html">اسئلة ومعلومات</a></li>
+            </ul>
+            
+            <a href="index.html" class="logo">
+                <img src="/img/logo.png" alt="HORRAN Logo" class="logo-img">
+                <span class="logo-text">HORRAN</span>
+            </a>
+            
+            <a href="personal-page.html" class="user-profile">
+                <img src="/img/1 copy.jpg" alt="صورة المستخدم" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">إبراهيم وسواس</span>
+                    <span class="user-role">عميل مميز</span>
+                </div>
+            </a>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-links">
+                    <li><a href="new.html" class="active">الجديد</a></li>
+                    <li><a href="index.html#services-section">خدماتنا</a></li>
+                    <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                </ul>
+                
+                <a href="personal-page.html" class="mobile-user-profile">
+                    <img src="/img/1 copy.jpg" alt="صورة المستخدم" class="mobile-user-avatar">
+                    <div class="mobile-user-info">
+                        <span class="mobile-user-name">إبراهيم وسواس</span>
+                        <span class="mobile-user-role">عميل مميز</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="overlay" id="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1 class="page-title">الجديد في HORRAN</h1>
+                <p class="page-subtitle">آخر الأخبار، التحديثات، والتعليمات الجديدة</p>
+            </section>
+
+            <!-- News Layout -->
+            <div class="news-layout">
+                <!-- Main News Content -->
+                <div class="main-news">
+                    <h2 class="section-title">آخر الأخبار والتحديثات</h2>
+
+                    <!-- Featured News -->
+                    <div class="featured-news">
+                        <span class="featured-badge">مميز</span>
+                        <h3 class="featured-title">إطلاق خدمة التصميم ثلاثي الأبعاد الجديدة!</h3>
+                        <p>الآن يمكنك رؤية تصاميم اليافطات بشكل ثلاثي الأبعاد قبل التنفيذ. جرب الخدمة الجديدة من خلال صفحة منتج الشاسيه.</p>
+                        <a href="service-advertising.html" class="read-more">
+                            جرب الخدمة الآن <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <!-- News Grid -->
+                    <div class="news-grid">
+                        <!-- News Card 1 -->
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-bolt"></i>
+                                <span class="news-badge">جديد</span>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="far fa-calendar"></i> 15 يناير 2024
+                                </div>
+                                <h3 class="news-title">تركيب لمبات LED بأسعار مخفضة</h3>
+                                <p class="news-excerpt">
+                                    خصم 20% على تركيب لمبات LED لجميع اليافطات. العرض ساري حتى نهاية الشهر.
+                                </p>
+                                <a href="#" class="read-more">
+                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- News Card 2 -->
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span class="news-badge">تحديث</span>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="far fa-calendar"></i> 10 يناير 2024
+                                </div>
+                                <h3 class="news-title">تحسين خدمة التوصيل للمحافظات</h3>
+                                <p class="news-excerpt">
+                                    تم توسيع نطاق التوصيل ليشمل جميع المحافظات مع تقليل وقت التوصيل إلى 48 ساعة.
+                                </p>
+                                <a href="#" class="read-more">
+                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- News Card 3 -->
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span class="news-badge">تعليمي</span>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="far fa-calendar"></i> 5 يناير 2024
+                                </div>
+                                <h3 class="news-title">دورة مجانية: أساسيات التسويق باليافطات</h3>
+                                <p class="news-excerpt">
+                                    انضم إلى دورتنا المجانية لتعلم كيفية استخدام اليافطات في التسويق الفعال.
+                                </p>
+                                <a href="#" class="read-more">
+                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- News Card 4 -->
+                        <div class="news-card">
+                            <div class="news-image">
+                                <i class="fas fa-tools"></i>
+                                <span class="news-badge">صيانة</span>
+                            </div>
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="far fa-calendar"></i> 2 يناير 2024
+                                </div>
+                                <h3 class="news-title">خدمة صيانة اليافطات أصبحت متاحة</h3>
+                                <p class="news-excerpt">
+                                    الآن يمكنك طلب خدمة صيانة اليافطات القديمة وتجديدها بأفضل الأسعار.
+                                </p>
+                                <a href="#" class="read-more">
+                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- More News Section -->
+                    <h2 class="section-title">تعليمات وتحديثات جديدة</h2>
+                    
+                    <div class="news-grid">
+                        <!-- Instruction 1 -->
+                        <div class="news-card">
+                            <div class="news-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">طريقة جديدة لأخذ المقاسات</h3>
+                                <p class="news-excerpt">
+                                    تعلم الطريقة الصحيحة لأخذ مقاسات اليافطات بدقة لتجنب الأخطاء.
+                                </p>
+                                <a href="faq.html#measurement" class="read-more">
+                                    اقرأ التعليمات <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Instruction 2 -->
+                        <div class="news-card">
+                            <div class="news-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">نصائح لاختيار الألوان المناسبة</h3>
+                                <p class="news-excerpt">
+                                    دليل شامل لاختيار ألوان اليافطات التي تجذب الانتباه وتناسب نشاطك.
+                                </p>
+                                <a href="#" class="read-more">
+                                    اقرأ النصائح <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="news-sidebar">
+                    <!-- Quick Links -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">روابط سريعة</h3>
+                        <ul class="quick-links">
+                            <li><a href="faq.html#measurement">أخذ المقاسات</a></li>
+                            <li><a href="service-advertising.html">طلب يافطة</a></li>
+                            <li><a href="faq.html#payment">طرق الدفع</a></li>
+                            <li><a href="faq.html#shipping">معلومات الشحن</a></li>
+                            <li><a href="personal-page.html">حسابي الشخصي</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Recent Updates -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">آخر التحديثات</h3>
+                        <ul class="update-list">
+                            <li>
+                                <div class="update-icon">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <div class="update-content">
+                                    <div class="update-title">تحسين واجهة المستخدم</div>
+                                    <div class="update-date">منذ 3 أيام</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="update-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="update-content">
+                                    <div class="update-title">تطبيق الجوال قريباً</div>
+                                    <div class="update-date">منذ أسبوع</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="update-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <div class="update-content">
+                                    <div class="update-title">دعم فني 24/7</div>
+                                    <div class="update-date">منذ أسبوعين</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="sidebar-section">
+                        <h3 class="sidebar-title">إحصائيات</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">1,250+</div>
+                                <div class="stat-label">يافطة منفذة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">عملاء راضون</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">24</div>
+                                <div class="stat-label">محافظة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">15</div>
+                                <div class="stat-label">خدمة متاحة</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <section class="newsletter-section">
+                <h3 class="newsletter-title">اشترك في نشرتنا الإخبارية</h3>
+                <p>كن أول من يعرف عن العروض الجديدة والتحديثات المهمة</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="ادخل بريدك الإلكتروني" required>
+                    <button type="submit" class="newsletter-btn">اشترك الآن</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <img src="/img/1 copy.jpg" alt="HORRAN Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">HORRAN</span>
+                    </a>
+                    <p class="footer-desc">By Ibrahim Wswas</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">تواصل</h3>
+                    <div class="footer-contact">
+                        <p>+20 01096798751</p>
+                        <p>ibrahimwswas16@gmail.com</p>
+                        <p>horran16@gmail.com</p>
+                        <p>كفر الشيخ - بيلا - شارع عبدالوهاب أبوغالي</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-section">خدماتنا</a></li>
+                        <li><a href="new.html">جديدنا</a></li>
+                        <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 HORRAN. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMobileMenu() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+            
+            function closeMobileMenu() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            hamburger.addEventListener('click', toggleMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // Close mobile menu when clicking on any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-user-profile');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('.newsletter-input').value;
+                if (email) {
+                    alert('شكراً لك على الاشتراك! سيصلك كل جديد على: ' + email);
+                    this.reset();
+                }
+            });
+
+            // Add some interactive effects to news cards
+            const newsCards = document.querySelectorAll('.news-card');
+            newsCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إبراهيم وسواس - HORRAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary-bg: #ffffff;
+            --secondary-bg: #f8f9fa;
+            --accent-color: #9C2741;
+            --text-dark: #333333;
+            --text-medium: #666666;
+            --text-light: #888888;
+            --border-light: #dddddd;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            height: 180px;
+            background: linear-gradient(135deg, rgba(156, 39, 65, 0.3), rgba(255, 182, 193, 0.4)), 
+                        url('/img/6.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .banner-edit-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .banner-edit-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-edit-btn {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .profile-edit-btn:hover {
+            background: #7a1f33;
+            transform: scale(1.1);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 15px;
+            color: var(--text-dark);
+        }
+
+        .profile-username {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            padding: 40px 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .widget {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        /* Earnings Widget */
+        .earnings-widget {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .earnings-card {
+            flex: 1;
+            text-align: center;
+            padding: 25px 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .earnings-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(156, 39, 65, 0.15);
+            border-color: var(--accent-color);
+        }
+
+        .earnings-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #ff6b6b);
+        }
+
+        .earnings-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .earnings-label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .earnings-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .currency-symbol {
+            font-size: 1.8rem;
+            color: #28a745;
+            font-weight: 700;
+        }
+
+        .earnings-subtext {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: var(--secondary-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .withdraw-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color), #b31e3e);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(156, 39, 65, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .withdraw-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(156, 39, 65, 0.4);
+        }
+
+        .withdraw-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .withdraw-btn:hover::before {
+            left: 100%;
+        }
+
+        .withdraw-btn.disabled {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .withdraw-btn.disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        /* Referral List */
+        .referral-list {
+            list-style: none;
+        }
+
+        .referral-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .referral-list li:last-child {
+            border-bottom: none;
+        }
+
+        .referral-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .show-more-btn {
+            width: 100%;
+            background-color: var(--secondary-bg);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .show-more-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Profile Edit Form */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: white;
+            pointer-events: none;
+            background-color: #f8f9fa;
+        }
+
+        .form-input.editable {
+            pointer-events: auto;
+            background-color: white;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        .edit-icon {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            color: var(--accent-color);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .profile-more-btn {
+            width: 100%;
+            background-color: var(--secondary-bg);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .profile-more-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Referral Code - UPDATED (REMOVED COPY BUTTON) */
+        .referral-section {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .referral-code-display {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px dashed var(--accent-color);
+        }
+
+        .referral-code {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        /* كود الإحالة - UPDATED (REMOVED COPY BUTTONS) */
+        .referral-code-section {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Earnings Note - SEPARATE WIDGET */
+        .earnings-note-widget {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffd54f;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .earnings-note-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .earnings-note-text {
+            color: #856404;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .earnings-percentage {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        /* Log List */
+        .log-section {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .log-list {
+            list-style: none;
+            counter-reset: log-counter;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            background: var(--secondary-bg);
+            margin-bottom: 15px;
+        }
+
+        .log-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+            counter-increment: log-counter;
+            position: relative;
+            padding-right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-list li:last-child {
+            border-bottom: none;
+        }
+
+        .log-list li:before {
+            content: counter(log-counter);
+            position: absolute;
+            right: 0;
+            background-color: var(--accent-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .log-item-content {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .log-item-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .log-item-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .log-item-amount {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .log-item-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
+
+        .log-show-more-btn {
+            width: 100%;
+            background-color: var(--secondary-bg);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .log-show-more-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* QR Code Section - WITH FUNCTIONAL BUTTONS */
+        .qr-section {
+            background: white;
+            border: 2px solid var(--border-light);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .qr-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .qr-code-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            padding: 10px;
+            position: relative;
+        }
+
+        #qrcode {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #qrcode canvas {
+            border-radius: 5px;
+        }
+
+        .qr-logo-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent-color);
+            z-index: 10;
+        }
+
+        .qr-logo-overlay img {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .qr-loading {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .qr-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .qr-name:after {
+            content: "👋";
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .qr-slogan {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .qr-username {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .qr-link {
+            font-size: 0.9rem;
+            color: #007BFF;
+            text-decoration: underline;
+            display: block;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        /* Print & Download Buttons - NOW FUNCTIONAL FOR ENTIRE SECTION */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .print-btn, .download-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .print-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .print-btn:hover {
+            background-color: #7a1f33;
+            transform: translateY(-2px);
+        }
+
+        .download-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Print Styles for QR Section */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .qr-section,
+            .qr-section * {
+                visibility: visible;
+            }
+            
+            .qr-section {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                border: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .action-buttons,
+            .action-buttons * {
+                display: none !important;
+            }
+        }
+
+        /* Footer - UPDATED TO MATCH INDEX PAGE */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-contact i {
+            width: 16px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .earnings-widget {
+                flex-direction: column;
+            }
+            
+            .hero-banner {
+                height: 150px;
+            }
+            
+            .profile-img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .qr-code-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .print-btn, .download-btn {
+                width: 200px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .widget {
+                padding: 15px;
+            }
+            
+            .qr-section {
+                padding: 20px;
+            }
+            
+            .footer-column {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="/img/logo.png" alt="HORRAN Logo" class="logo-img">
+                <span class="logo-text">HORRAN</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <div class="hero-banner">
+        <button class="banner-edit-btn" id="banner-edit-btn">
+            <i class="fas fa-camera"></i>
+            تغيير الغلاف
+        </button>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-img-container">
+                <img src="/img/1 copy.jpg" alt="إبراهيم وسواس" class="profile-img">
+                <button class="profile-edit-btn" id="profile-edit-btn">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <h2 class="profile-name">إبراهيم وسواس</h2>
+            <p class="profile-username">@ibrahimwswas</p>
+        </div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="container">
+        <section class="dashboard-section">
+            <div class="dashboard-grid">
+                <!-- Earnings Widget -->
+                <div class="widget">
+                    <div class="earnings-widget">
+                        <div class="earnings-card">
+                            <div class="earnings-label">الأرباح</div>
+                            <div class="earnings-number">
+                                <span class="currency-symbol">£</span>
+                                <span id="earnings-amount">55</span>
+                            </div>
+                            <div class="earnings-subtext">جنيه مصري</div>
+                        </div>
+                        <div class="earnings-card">
+                            <div class="earnings-label">عدد المحالين</div>
+                            <div class="earnings-number" id="referrals-count">20</div>
+                            <div class="earnings-subtext">شخص</div>
+                        </div>
+                    </div>
+                    <!-- زر سحب الأرباح المعدل -->
+                    <a href="withdrawing-profits.html" class="withdraw-btn" id="withdraw-btn">
+                        <i class="fas fa-money-bill-wave"></i>
+                        سحب الأرباح
+                    </a>
+                </div>
+
+                <!-- Referral List -->
+                <div class="widget">
+                    <h3 class="widget-title">قائمة الأشخاص المحالة</h3>
+                    <ul class="referral-list" id="referral-list">
+                        <!-- سيتم إضافة الأشخاص ديناميكياً -->
+                    </ul>
+                    <button class="show-more-btn" id="show-more-btn">عرض المزيد</button>
+                </div>
+
+                <!-- Profile Edit -->
+                <div class="widget" style="position: relative;">
+                    <i class="fas fa-edit edit-icon" id="edit-profile-btn"></i>
+                    <h3 class="widget-title">بيانات الحساب</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">الاسم</label>
+                        <div class="input-with-icon">
+                            <input type="text" class="form-input" value="إبراهيم وسواس" id="name-input" readonly>
+                            <i class="fas fa-eye input-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <div class="input-with-icon">
+                            <input type="email" class="form-input" value="ibrahim@gmail.com" id="email-input" readonly>
+                            <i class="fas fa-eye input-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">رقم الموبايل</label>
+                        <div class="input-with-icon">
+                            <input type="text" class="form-input" value="01230001234" id="phone-input" readonly>
+                            <i class="fas fa-eye input-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <button class="profile-more-btn" id="profile-more-btn">عرض المزيد</button>
+                </div>
+
+                <!-- Referral Code - UPDATED (NO COPY BUTTONS) -->
+                <div class="referral-section">
+                    <h3 class="widget-title">احالك</h3>
+                    <div class="referral-code-display">
+                        <div class="referral-code">ws123w11</div>
+                    </div>
+
+                    <!-- كود الإحالة - UPDATED (NO COPY BUTTONS) -->
+                    <div class="referral-code-section">
+                        <h3 class="widget-title">كود الإحالة</h3>
+                        <div class="referral-code-display" style="margin-bottom: 0;">
+                            <div class="referral-code">REF-IBRAHIM123</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings Note - SEPARATE WIDGET -->
+                <div class="earnings-note-widget">
+                    <div class="earnings-note-title">💡 ملاحظة هامة عن الأرباح</div>
+                    <div class="earnings-note-text">
+                        أي خدمة يستهلكها شخص من المحالين ستحصل على 
+                        <span class="earnings-percentage">30%</span> 
+                        من نسبة الأرباح الصافية من قيمة الخدمة
+                    </div>
+                </div>
+
+                <!-- Log Section - WITHOUT EARNINGS NOTE -->
+                <div class="log-section">
+                    <h3 class="widget-title">سجل العمليات</h3>
+                    <ul class="log-list" id="log-list">
+                        <!-- سيتم إضافة السجلات ديناميكياً -->
+                    </ul>
+                    <button class="log-show-more-btn" id="log-show-more-btn">عرض المزيد</button>
+                </div>
+            </div>
+
+            <!-- QR Code Section - WITH FUNCTIONAL BUTTONS -->
+            <div class="qr-section" id="qr-section">
+                <h3 class="qr-title">اعمل باركود واطبعه واعمل فلوس وانت قاعد مكانك</h3>
+                <div class="qr-code-container">
+                    <div id="qrcode" class="qr-loading">جاري إنشاء الباركود...</div>
+                    <div class="qr-logo-overlay">
+                        <img src="/img/logo.png" alt="HORRAN Logo">
+                    </div>
+                </div>
+                <h3 class="qr-name">إبراهيم وسواس</h3>
+                <p class="qr-slogan">يضمن لك افضل خدمه في اكثر المجالات امسح الكود وابدأ رحلتك نحو النجاح</p>
+                <p class="qr-username">@<span id="qr-username">ibrahimwswas</span></p>
+                <a href="#" id="qr-link" class="qr-link">جاري تحميل الرابط...</a>
+                
+                <!-- Action Buttons - NOW FUNCTIONAL FOR ENTIRE SECTION -->
+                <div class="action-buttons">
+                    <button class="print-btn" id="print-btn">
+                        <i class="fas fa-print"></i>
+                        طباعه الباركود
+                    </button>
+                    <button class="download-btn" id="download-btn">
+                        <i class="fas fa-download"></i>
+                        احفظ الصوره
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer - UPDATED TO MATCH INDEX PAGE -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <img src="/img/1 copy.jpg" alt="HORRAN Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">HORRAN</span>
+                    </a>
+                    <p class="footer-desc">By Ibrahim Wswas</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">تواصل</h3>
+                    <div class="footer-contact">
+                        <p>+20 01096798751</p>
+                        <p>ibrahimwswas16@gmail.com</p>
+                        <p>horran16@gmail.com</p>
+                        <p>كفر الشيخ - بيلا - شارع عبدالوهاب أبوغالي</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-section">خدماتنا</a></li>
+                        <li><a href="new.html">جديدنا</a></li>
+                        <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 HORRAN. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // البيانات الأولية
+        const allReferrals = [
+            "أحمد محمد", "محمود علي", "يوسف خالد", "إسماعيل حسن", "محمد أحمد",
+            "سارة مصطفى", "فاطمة عمر", "علي إبراهيم", "خالد محمود", "حسن يوسف",
+            "نوران سعيد", "ريم أحمد", "أيمن فاروق", "ياسر كمال", "هبة الله",
+            "ميار ناصر", "بسام وليد", "جمال عبدالله", "دينا رامي", "زينب عماد"
+        ];
+
+        // بيانات السجل
+        const allLogs = [
+            { type: "purchase", title: "شراء خدمة تصميم", desc: "تصميم شعار لشركة تقنية", amount: "£50", date: "2024-01-15" },
+            { type: "withdrawal", title: "سحب أرباح", desc: "تحويل إلى البنك", amount: "£120", date: "2024-01-14" },
+            { type: "purchase", title: "شراء خدمة تسويق", desc: "حملة إعلانية على وسائل التواصل", amount: "£75", date: "2024-01-13" },
+            { type: "bonus", title: "مكافأة ترحيب", desc: "مكافأة انضمام جديدة", amount: "£25", date: "2024-01-12" },
+            { type: "purchase", title: "شراء خدمة استشارة", desc: "استشارة تسويق رقمي", amount: "£60", date: "2024-01-11" }
+        ];
+
+        // JavaScript functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة قائمة الأشخاص المحالة
+            function initializeReferralList() {
+                const referralList = document.getElementById('referral-list');
+                referralList.innerHTML = '';
+                
+                allReferrals.forEach((name, index) => {
+                    if (index < 6) {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <span>${name}</span>
+                            <div class="referral-number">${index + 1}</div>
+                        `;
+                        referralList.appendChild(li);
+                    }
+                });
+
+                document.getElementById('referrals-count').textContent = allReferrals.length;
+            }
+
+            // تهيئة قائمة السجل
+            function initializeLogList() {
+                const logList = document.getElementById('log-list');
+                logList.innerHTML = '';
+                
+                allLogs.forEach((log, index) => {
+                    if (index < 5) {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <div class="log-item-content">
+                                <div class="log-item-title">${log.title}</div>
+                                <div class="log-item-desc">${log.desc}</div>
+                                <div class="log-item-date">${log.date}</div>
+                            </div>
+                            <div class="log-item-amount">${log.amount}</div>
+                        `;
+                        logList.appendChild(li);
+                    }
+                });
+            }
+
+            // QR Code Generation Function
+            function generateQRCode(username) {
+                const baseUrl = 'https://www.horran.store/';
+                const referralLink = `${baseUrl}welcome.html?referrer=${username}`;
+                
+                const qrLinkElement = document.getElementById('qr-link');
+                qrLinkElement.href = referralLink;
+                qrLinkElement.textContent = referralLink;
+                
+                const qrUsernameElement = document.getElementById('qr-username');
+                qrUsernameElement.textContent = username;
+                
+                const qrcodeElement = document.getElementById('qrcode');
+                qrcodeElement.innerHTML = '';
+                
+                try {
+                    const qrcode = new QRCode(qrcodeElement, {
+                        text: referralLink,
+                        width: 180,
+                        height: 180,
+                        colorDark: "#333333",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                } catch (error) {
+                    console.error('خطأ في إنشاء الباركود:', error);
+                    qrcodeElement.innerHTML = `
+                        <div style="text-align: center; color: var(--text-light);">
+                            <p>خطأ في إنشاء الباركود</p>
+                            <p style="font-size: 12px;">${referralLink}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Print QR Section Functionality
+            document.getElementById('print-btn').addEventListener('click', function() {
+                // استخدام الطباعة المباشرة لقسم QR كامل
+                window.print();
+            });
+
+            // Download QR Section Functionality
+            document.getElementById('download-btn').addEventListener('click', function() {
+                const qrSection = document.getElementById('qr-section');
+                
+                html2canvas(qrSection, {
+                    scale: 2, // جودة عالية
+                    backgroundColor: '#ffffff',
+                    useCORS: true,
+                    logging: false
+                }).then(canvas => {
+                    // تحويل Canvas إلى صورة
+                    const image = canvas.toDataURL('image/png', 1.0);
+                    
+                    // إنشاء رابط تحميل
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = image;
+                    downloadLink.download = `qrcode-section-${document.getElementById('qr-username').textContent}.png`;
+                    
+                    // نقر الرابط برمجياً
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+                    document.body.removeChild(downloadLink);
+                    
+                    // إظهار رسالة نجاح
+                    showToast('تم تحميل صورة قسم الباركود كاملاً بنجاح!');
+                }).catch(error => {
+                    console.error('خطأ في تحميل الصورة:', error);
+                    showToast('حدث خطأ في تحميل الصورة');
+                });
+            });
+
+            // Toast Notification Function
+            function showToast(message, type = 'success') {
+                // إنشاء عنصر toast ديناميكياً
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                toast.style.background = type === 'success' ? '#28a745' : '#dc3545';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '20px';
+                toast.style.right = '20px';
+                toast.style.padding = '15px 25px';
+                toast.style.borderRadius = '8px';
+                toast.style.color = 'white';
+                toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                toast.style.zIndex = '1000';
+                toast.style.transform = 'translateY(100px)';
+                toast.style.opacity = '0';
+                toast.style.transition = 'all 0.3s ease';
+                
+                document.body.appendChild(toast);
+                
+                // إظهار toast
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(0)';
+                    toast.style.opacity = '1';
+                }, 100);
+                
+                // إخفاء toast بعد 3 ثواني
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(100px)';
+                    toast.style.opacity = '0';
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 3000);
+            }
+
+            // الحصول على اسم المستخدم
+            function getUsername() {
+                return 'ibrahimwswas';
+            }
+
+            // التحقق من الأرباح وتفعيل زر السحب
+            function checkEarningsAndEnableWithdraw() {
+                const earnings = parseInt(document.getElementById('earnings-amount').textContent);
+                const withdrawBtn = document.getElementById('withdraw-btn');
+                
+                if (earnings >= 50) {
+                    // الأرباح كافية للسحب
+                    withdrawBtn.classList.remove('disabled');
+                    withdrawBtn.innerHTML = '<i class="fas fa-money-bill-wave"></i> سحب الأرباح (' + earnings + ' £)';
+                } else {
+                    // الأرباح غير كافية
+                    withdrawBtn.classList.add('disabled');
+                    withdrawBtn.innerHTML = '<i class="fas fa-money-bill-wave"></i> سحب الأرباح (' + earnings + ' £)';
+                    withdrawBtn.onclick = function(e) {
+                        e.preventDefault();
+                        showToast('يجب أن يكون لديك 50 جنيه على الأقل لسحب الأرباح', 'error');
+                    };
+                }
+            }
+
+            // التهيئة الأولية
+            initializeReferralList();
+            initializeLogList();
+            setTimeout(() => {
+                generateQRCode(getUsername());
+            }, 100);
+            
+            // تفعيل زر السحب بناءً على الأرباح
+            checkEarningsAndEnableWithdraw();
+
+            // إضافة event listener لعرض المزيد
+            document.getElementById('show-more-btn').addEventListener('click', function() {
+                alert('سيتم عرض جميع الأشخاص المحالين في نافذة منبثقة');
+            });
+
+            document.getElementById('log-show-more-btn').addEventListener('click', function() {
+                alert('سيتم عرض سجل العمليات الكامل في نافذة منبثقة');
+            });
+
+            document.getElementById('profile-more-btn').addEventListener('click', function() {
+                alert('سيتم عرض بيانات الحساب الكاملة في نافذة منبثقة');
+            });
+        });
+    </script>
+</body>
+</html>

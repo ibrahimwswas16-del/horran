@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORRAN - منصة الخدمات المتكاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --accent-color: #800020;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary:hover {
+            background-color: #6a001b;
+        }
+
+        .login-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .login-link:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 70%;
+            height: 100vh;
+            background-color: var(--secondary-bg);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 80px 20px 20px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-nav-buttons {
+            margin-top: 30px;
+        }
+
+        .mobile-nav-buttons .btn-primary {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .mobile-login-link {
+            display: block;
+            text-align: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 10px;
+        }
+
+        .mobile-login-link:hover {
+            color: var(--accent-color);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #1b154b 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/img/1.jpg') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-left: 40px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-btn {
+            background-color: white;
+            color: var(--accent-color);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 400px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--accent-color);
+        }
+
+        .services-container {
+            position: relative;
+        }
+
+        .services-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            gap: 20px;
+            scrollbar-width: none;
+        }
+
+        .services-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .service-card {
+            min-width: 280px;
+            height: 280px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-title {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .service-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .status-available {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-coming {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-nav:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .carousel-nav.left {
+            right: -20px;
+        }
+
+        .carousel-nav.right {
+            left: -20px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-desc {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #1b154b 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Coming Soon Modal */
+        .coming-soon-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .coming-soon-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .coming-soon-icon {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .coming-soon-message {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .close-modal {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-modal:hover {
+            background: #6a001b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column-reverse;
+            }
+            
+            .hero-content {
+                padding-left: 0;
+                margin-top: 40px;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-image {
+                max-width: 100%;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-buttons {
+                display: none;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .carousel-nav {
+                display: none;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 40px;
+            }
+
+            .coming-soon-content {
+                padding: 30px 20px;
+            }
+
+            .coming-soon-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-image {
+                height: 300px;
+            }
+            
+            .service-card {
+                min-width: 250px;
+                height: 250px;
+            }
+            
+            .mobile-menu {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <header>
+        <div class="container nav-container">
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="new.html">الجديد</a></li>
+                <li><a href="#" id="services-link">خدماتنا</a></li>
+                <li><a href="faq.html">اسئلة ومعلومات</a></li>
+            </ul>
+            
+            <!-- Centered Logo with Link -->
+            <a href="#" class="logo">
+                <img src="/img/logo.png" alt="HORRAN Logo" class="logo-img">
+                <span class="logo-text">HORRAN</span>
+            </a>
+            
+            <!-- Desktop Navigation Buttons -->
+            <div class="nav-buttons">
+                <a href="login.html" class="login-link">سجل الدخول</a>
+                <a href="register.html" class="btn-primary">ابدأ خد الخطوة</a>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-links">
+                    <li><a href="new.html">الجديد</a></li>
+                    <li><a href="#" id="mobile-services-link">خدماتنا</a></li>
+                    <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                </ul>
+                <div class="mobile-nav-buttons">
+                    <a href="login.html" class="mobile-login-link">سجل الدخول</a>
+                    <a href="register.html" class="btn-primary">ابدأ خد الخطوة</a>
+                </div>
+            </div>
+            
+            <!-- Overlay for Mobile Menu -->
+            <div class="overlay" id="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">منغير حرية مفيش حياة حقيقه</h1>
+                <p class="hero-subtitle">انت هنا علشان تسهل الطريق علينا وعلي نفسك ابدأ خد الخطوة وكمل في طريق انت اختارته</p>
+                <a href="register.html" class="hero-btn">ابدأ خد الخطوة</a>
+            </div>
+            
+            <div class="hero-image">
+                <img src="/img/1.jpg" alt="مبنى تاريخي بقبة">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services-section">
+        <div class="container">
+            <h2 class="section-title">خدماتنا</h2>
+            
+            <div class="services-container">
+                <div class="carousel-nav left">←</div>
+                
+                <div class="services-carousel" id="servicesCarousel">
+                    <!-- الخدمات المتاحة تظهر أولاً -->
+                    <a href="service-advertising.html" class="service-card">
+                        <div class="service-status status-available">متاح</div>
+                        <div class="service-image">
+                            <img src="/img/4.jpg" alt="دعايا واعلان">
+                        </div>
+                        <div class="service-title">دعايا واعلان</div>
+                    </a>
+                    
+                    <!-- الخدمات قيد التطوير تظهر بعد المتاحة -->
+                    <a href="#" class="service-card coming-soon-service" data-service="ملابس">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="/img/3.jpeg" alt="ملابس">
+                        </div>
+                        <div class="service-title">ملابس</div>
+                    </a>
+                    
+                    <a href="#" class="service-card coming-soon-service" data-service="اكسسوارات">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="/img/40.jpg" alt="اكسسوارات">
+                        </div>
+                        <div class="service-title">اكسسوارات وهاند ميد</div>
+                    </a>
+                    
+                    <a href="#" class="service-card coming-soon-service" data-service="تشطيبات">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="/img/2.png" alt="تشطيبات">
+                        </div>
+                        <div class="service-title">تشطيبات</div>
+                    </a>
+                    
+                    <a href="#" class="service-card coming-soon-service" data-service="كاميرات">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="https://cdn.salla.sa/VxPBb/7cd10a06-c36b-42e3-b53d-6e10660fac59-1000x560-E5G5fFwhxpDHLZCTRo9I5Y4zmFwK4TgFY1GLJYR3.png" alt="كاميرات">
+                        </div>
+                        <div class="service-title">كاميرات مراقبة</div>
+                    </a>
+
+                    <a href="#" class="service-card coming-soon-service" data-service="تصميم مواقع">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="تصميم مواقع">
+                        </div>
+                        <div class="service-title">تصميم مواقع</div>
+                    </a>
+
+                    <a href="#" class="service-card coming-soon-service" data-service="تطبيقات موبايل">
+                        <div class="service-status status-coming">قيد التطوير</div>
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="تطبيقات موبايل">
+                        </div>
+                        <div class="service-title">تطبيقات موبايل</div>
+                    </a>
+                </div>
+                
+                <div class="carousel-nav right">→</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">لماذا تختار HORRAN؟</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">بداية سريعة</h3>
+                    <p class="feature-desc">انضم إلينا وابدأ رحلتك نحو النجاح بخطوات بسيطة وسهلة</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3 class="feature-title">خدمات متكاملة</h3>
+                    <p class="feature-desc">نوفر لك مجموعة متنوعة من الخدمات لتلبية جميع احتياجاتك</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">مجتمع نشط</h3>
+                    <p class="feature-desc">انضم إلى مجتمعنا النشط وكن جزءاً من شبكة متنامية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1,250+</div>
+                    <div class="stat-label">يافطة منفذة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">عملاء راضون</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">محافظة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">خدمات متكاملة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Modal -->
+    <div class="coming-soon-modal" id="comingSoonModal">
+        <div class="coming-soon-content">
+            <div class="coming-soon-icon">🚧</div>
+            <h2 class="coming-soon-title">الخدمة قيد التطوير</h2>
+            <p class="coming-soon-message">
+                نعمل حالياً على تطوير وتحسين هذه الخدمة لتقديم أفضل تجربة ممكنة.<br>
+                ستكون متاحة قريباً إن شاء الله.
+            </p>
+            
+            <div class="coming-soon-code">
+                <div class="code-line">// Service Under Development</div>
+                <div class="code-line">function <span id="service-name">خدمة</span>() {</div>
+                <div class="code-line">&nbsp;&nbsp;return "قريباً إن شاء الله";</div>
+                <div class="code-line">}</div>
+            </div>
+            
+            <button class="close-modal" id="closeModal">حسناً، سأنتظر</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <img src="/img/1 copy.jpg" alt="HORRAN Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">HORRAN</span>
+                    </a>
+                    <p class="footer-desc">By Ibrahim Wswas</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">تواصل</h3>
+                    <div class="footer-contact">
+                        <p>+20 01096798751</p>
+                        <p>ibrahimwswas16@gmail.com</p>
+                        <p>horran16@gmail.com</p>
+                        <p>كفر الشيخ - بيلا - شارع عبدالوهاب أبوغالي</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-section">خدماتنا</a></li>
+                        <li><a href="new.html">جديدنا</a></li>
+                        <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 HORRAN. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.services-carousel');
+            const leftNav = document.querySelector('.carousel-nav.left');
+            const rightNav = document.querySelector('.carousel-nav.right');
+            
+            leftNav.addEventListener('click', function() {
+                carousel.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+            
+            rightNav.addEventListener('click', function() {
+                carousel.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+
+            // Add click event to logo to redirect to home page
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Also add to footer logo
+            const footerLogo = document.querySelector('.footer-logo');
+            footerLogo.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Scroll to services section when clicking on "خدماتنا" in navigation
+            const servicesLink = document.getElementById('services-link');
+            const mobileServicesLink = document.getElementById('mobile-services-link');
+            const servicesSection = document.getElementById('services-section');
+            
+            servicesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                servicesSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+            
+            mobileServicesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                servicesSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                closeMobileMenu();
+            });
+
+            // Mobile menu functionality
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMobileMenu() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+            
+            function closeMobileMenu() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            hamburger.addEventListener('click', toggleMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // Close mobile menu when clicking on any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-login-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Coming Soon Modal Functionality
+            const comingSoonModal = document.getElementById('comingSoonModal');
+            const closeModal = document.getElementById('closeModal');
+            const serviceNameElement = document.getElementById('service-name');
+            const comingSoonServices = document.querySelectorAll('.coming-soon-service');
+
+            comingSoonServices.forEach(service => {
+                service.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const serviceName = this.getAttribute('data-service');
+                    serviceNameElement.textContent = serviceName;
+                    comingSoonModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                comingSoonModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside
+            comingSoonModal.addEventListener('click', function(e) {
+                if (e.target === comingSoonModal) {
+                    comingSoonModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && comingSoonModal.classList.contains('active')) {
+                    comingSoonModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

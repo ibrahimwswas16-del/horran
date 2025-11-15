@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسئلة ومعلومات - HORRAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --accent-color: #800020;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            justify-content: flex-end;
+            padding: 5px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .user-profile:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .user-profile:hover .user-avatar {
+            transform: scale(1.1);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .user-role {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 70%;
+            height: 100vh;
+            background-color: var(--secondary-bg);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 80px 20px 20px;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-user-profile:hover {
+            background-color: #f8f9fa;
+            padding-right: 10px;
+        }
+
+        .mobile-user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-user-profile:hover .mobile-user-avatar {
+            transform: scale(1.1);
+        }
+
+        .mobile-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .mobile-user-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            background: linear-gradient(135deg, var(--accent-color), #6a001b);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            border-radius: 15px;
+        }
+
+        .intro-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .intro-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* FAQ Layout */
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Right Side - Popular Questions */
+        .popular-questions {
+            background: var(--secondary-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .popular-list {
+            list-style: none;
+        }
+
+        .popular-list li {
+            margin-bottom: 15px;
+        }
+
+        .popular-list a {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+
+        .popular-list a:hover {
+            background: var(--accent-color);
+            color: white;
+            border-right-color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        /* Left Side - Questions Content */
+        .questions-content {
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .question-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .question-item {
+            margin-bottom: 25px;
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question-item:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .question-header {
+            padding: 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .question-header:hover {
+            background: #e9ecef;
+        }
+
+        .question-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .question-toggle {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .question-item.active .question-toggle {
+            transform: rotate(180deg);
+        }
+
+        .question-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .question-item.active .question-answer {
+            padding: 20px;
+            max-height: 2000px;
+        }
+
+        .answer-content {
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        /* Measurement Section - Special Styling */
+        .measurement-section {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .measurement-title {
+            color: #e65100;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .measurement-caption {
+            color: #bf360c;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background: linear-gradient(135deg, #333, #555);
+        }
+
+        .video-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #ff9800;
+        }
+
+        .video-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .measurement-image {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: 600;
+            border: 2px dashed var(--border-light);
+        }
+
+        .step-by-step {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 25px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .step-title {
+            color: #e65100;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .step-list {
+            list-style: none;
+            padding-right: 20px;
+        }
+
+        .step-list li {
+            margin-bottom: 12px;
+            padding-right: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .step-list li:before {
+            content: "•";
+            color: #ff9800;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 0;
+            top: -2px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .user-profile {
+                display: none;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+            
+            .faq-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .popular-questions {
+                position: static;
+            }
+            
+            .intro-title {
+                font-size: 2rem;
+            }
+            
+            .intro-subtitle {
+                font-size: 1rem;
+            }
+            
+            .video-container {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                margin-top: 70px;
+            }
+            
+            .intro-section {
+                padding: 40px 20px;
+            }
+            
+            .questions-content {
+                padding: 20px;
+            }
+            
+            .measurement-section {
+                padding: 20px;
+            }
+            
+            .images-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <header>
+        <div class="container nav-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="new.html">الجديد</a></li>
+                <li><a href="index.html#services-section">خدماتنا</a></li>
+                <li><a href="faq.html" class="active">اسئلة ومعلومات</a></li>
+            </ul>
+            
+            <a href="index.html" class="logo">
+                <img src="/img/logo.png" alt="HORRAN Logo" class="logo-img">
+                <span class="logo-text">HORRAN</span>
+            </a>
+            
+            <a href="personal-page.html" class="user-profile">
+                <img src="/img/1 copy.jpg" alt="صورة المستخدم" class="user-avatar">
+                <div class="user-info">
+                    <span class="user-name">إبراهيم وسواس</span>
+                    <span class="user-role">عميل مميز</span>
+                </div>
+            </a>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <ul class="mobile-nav-links">
+                    <li><a href="new.html">الجديد</a></li>
+                    <li><a href="index.html#services-section">خدماتنا</a></li>
+                    <li><a href="faq.html" class="active">اسئلة ومعلومات</a></li>
+                </ul>
+                
+                <a href="personal-page.html" class="mobile-user-profile">
+                    <img src="/img/1 copy.jpg" alt="صورة المستخدم" class="mobile-user-avatar">
+                    <div class="mobile-user-info">
+                        <span class="mobile-user-name">إبراهيم وسواس</span>
+                        <span class="mobile-user-role">عميل مميز</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="overlay" id="overlay"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section class="intro-section">
+                <h1 class="intro-title">احنا مين وبنقدم ايه؟</h1>
+                <p class="intro-subtitle">
+                    HORRAN هي منصة متكاملة تقدم أفضل خدمات الدعاية والإعلان، التصميم، والطباعة. 
+                    نحن نعمل على توفير حلول إبداعية ومبتكرة تلبي جميع احتياجاتك في مجال التسويق والإعلان. 
+                    من تصميم الشعارات واليافطات إلى الطباعة والدعاية الرقمية، نحن هنا لنجعل فكرتك حقيقة.
+                </p>
+            </section>
+
+            <!-- FAQ Layout -->
+            <div class="faq-layout">
+                <!-- Right Side - Popular Questions -->
+                <div class="popular-questions">
+                    <h2 class="section-title">الأسئلة الشائعة</h2>
+                    <ul class="popular-list">
+                        <li><a href="#measurement">ازاي تاخد مقاس يفطتك</a></li>
+                        <li><a href="#shipping">تكاليف ومواعيد الشحن</a></li>
+                        <li><a href="#payment">طرق الدفع المتاحة</a></li>
+                        <li><a href="#warranty">الضمان والصيانة</a></li>
+                        <li><a href="#design">التصميم والإبداع</a></li>
+                        <li><a href="#materials">أنواع الخامات</a></li>
+                        <li><a href="#led">تركيب اللمبات LED</a></li>
+                        <li><a href="#installation">التركيب والتثبيت</a></li>
+                    </ul>
+                </div>
+
+                <!-- Left Side - Questions Content -->
+                <div class="questions-content">
+                    <!-- General Questions -->
+                    <div class="question-category">
+                        <h2 class="category-title">أسئلة عامة</h2>
+                        
+                        <div class="question-item">
+                            <div class="question-header">
+                                <h3>ما هي مدة تنفيذ الطلب؟</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>مدة التنفيذ تختلف حسب نوع الخدمة المطلوبة:</p>
+                                    <ul>
+                                        <li>اليافطات العادية: 3-5 أيام عمل</li>
+                                        <li>اليافطات المضيئة: 5-7 أيام عمل</li>
+                                        <li>التصاميم الإبداعية: 2-3 أيام عمل</li>
+                                        <li>الطباعة السريعة: 24-48 ساعة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-header">
+                                <h3>هل تقدمون خدمة التوصيل؟</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>نعم، نقدم خدمة التوصيل لجميع أنحاء الجمهورية:</p>
+                                    <ul>
+                                        <li>التوصيل داخل المدينة: مجاني</li>
+                                        <li>التوصيل للمحافظات: حسب المنطقة</li>
+                                        <li>التركيب: متاح بأسعار إضافية</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Questions -->
+                    <div class="question-category">
+                        <h2 class="category-title">أسئلة فنية</h2>
+                        
+                        <div class="question-item">
+                            <div class="question-header">
+                                <h3>ما هي أفضل الخامات لليافطات الخارجية؟</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>ننصح باستخدام الخامات التالية حسب الاستخدام:</p>
+                                    <ul>
+                                        <li>الكانفس: مثالي للمحلات والمطاعم</li>
+                                        <li>الاكريليك: للمحلات الفاخرة</li>
+                                        <li>الاستيل: للمستشفيات والمؤسسات</li>
+                                        <li>الخشب: للمحلات التراثية</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Measurement Section - Special -->
+                        <div class="question-item" id="measurement">
+                            <div class="question-header">
+                                <h3>ازاي تاخد مقاس يفطتك</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="measurement-section">
+                                    <h3 class="measurement-title">ازاي تاخد مقاس يفطتك</h3>
+                                    <p class="measurement-caption">
+                                        الخطوة الأهم في عملية صنع اليافطة هي أخذ المقاسات الصحيحة. 
+                                        هنا سنشرح لك بالتفصيل كيفية أخذ المقاسات بدقة.
+                                    </p>
+
+                                    <!-- Video Tutorial -->
+                                    <div class="video-container">
+                                        <div class="video-placeholder">
+                                            <i class="fas fa-play-circle video-icon"></i>
+                                            <div class="video-text">فيديو تعليمي - كيفية أخذ المقاسات</div>
+                                            <p>سيتم إضافة الفيديو قريباً</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step by Step Guide -->
+                                    <div class="step-by-step">
+                                        <h4 class="step-title">خطوات أخذ المقاسات:</h4>
+                                        <ul class="step-list">
+                                            <li>استخدم متر قياس عالي الجودة</li>
+                                            <li>اقيس المساحة المراد تركيب اليافطة فيها</li>
+                                            <li>سجل القياسات بالسنتميتر (العرض × الارتفاع)</li>
+                                            <li>خذ في الاعتبار المسافات الفارغة حول اليافطة</li>
+                                            <li>التقط صوراً للمساحة من زوايا مختلفة</li>
+                                            <li>استشر فريقنا إذا كنت تحتاج مساعدة</li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Additional Images -->
+                                    <div class="images-grid">
+                                        <div class="measurement-image">
+                                            <i class="fas fa-ruler-combined"></i>
+                                            <span>أدوات القياس</span>
+                                        </div>
+                                        <div class="measurement-image">
+                                            <i class="fas fa-cube"></i>
+                                            <span>نماذج اليافطات</span>
+                                        </div>
+                                        <div class="measurement-image">
+                                            <i class="fas fa-lightbulb"></i>
+                                            <span>نصائح وإرشادات</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item">
+                            <div class="question-header">
+                                <h3>كيفية تركيب اللمبات LED</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>تركيب اللمبات LED يتطلب الخطوات التالية:</p>
+                                    <ul>
+                                        <li>تحديد أماكن اللمبات بالتساوي</li>
+                                        <li>تركيب أسلاك التوصيل</li>
+                                        <li>ربط المحول الكهربائي</li>
+                                        <li>اختبار الإضاءة قبل التثبيت النهائي</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment & Shipping -->
+                    <div class="question-category">
+                        <h2 class="category-title">الدفع والشحن</h2>
+                        
+                        <div class="question-item" id="payment">
+                            <div class="question-header">
+                                <h3>ما هي طرق الدفع المتاحة؟</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>نوفر多种 طرق الدفع لراحتك:</p>
+                                    <ul>
+                                        <li>الدفع نقداً عند الاستلام</li>
+                                        <li>التحويل البنكي</li>
+                                        <li>الدفع عبر الانستاباي</li>
+                                        <li>الدفع الإلكتروني</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question-item" id="shipping">
+                            <div class="question-header">
+                                <h3>ما هي مدة الشحن والتوصيل؟</h3>
+                                <span class="question-toggle">▼</span>
+                            </div>
+                            <div class="question-answer">
+                                <div class="answer-content">
+                                    <p>مدة الشحن تختلف حسب المنطقة:</p>
+                                    <ul>
+                                        <li>المدن الكبرى: 1-2 يوم</li>
+                                        <li>المحافظات: 2-3 أيام</li>
+                                        <li>القرى والنجوع: 3-5 أيام</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <img src="/img/1 copy.jpg" alt="HORRAN Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">HORRAN</span>
+                    </a>
+                    <p class="footer-desc">By Ibrahim Wswas</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">تواصل</h3>
+                    <div class="footer-contact">
+                        <p>+20 01096798751</p>
+                        <p>ibrahimwswas16@gmail.com</p>
+                        <p>horran16@gmail.com</p>
+                        <p>كفر الشيخ - بيلا - شارع عبدالوهاب أبوغالي</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-section">خدماتنا</a></li>
+                        <li><a href="new.html">جديدنا</a></li>
+                        <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 HORRAN. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const questionItems = document.querySelectorAll('.question-item');
+            
+            questionItems.forEach(item => {
+                const header = item.querySelector('.question-header');
+                const toggle = item.querySelector('.question-toggle');
+                
+                header.addEventListener('click', function() {
+                    // Close all other items
+                    questionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+
+            // Smooth scroll for popular questions links
+            const popularLinks = document.querySelectorAll('.popular-list a');
+            
+            popularLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Find the parent question item
+                        const questionItem = targetElement.closest('.question-item');
+                        
+                        // Close all other items
+                        questionItems.forEach(item => {
+                            if (item !== questionItem) {
+                                item.classList.remove('active');
+                            }
+                        });
+                        
+                        // Open the target item
+                        questionItem.classList.add('active');
+                        
+                        // Smooth scroll to the target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Mobile menu functionality
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMobileMenu() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            }
+            
+            function closeMobileMenu() {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            hamburger.addEventListener('click', toggleMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+            
+            // Close mobile menu when clicking on any link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-user-profile');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        });
+    </script>
+</body>
+</html>

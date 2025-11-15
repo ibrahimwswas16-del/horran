@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل حساب جديد - HORRAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f8f9fa;
+            --secondary-bg: #ffffff;
+            --accent-color: #800020;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --border-light: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1001;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            background-color: #6a001b;
+        }
+
+        .login-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .login-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Registration Section */
+        .registration {
+            padding: 150px 0 80px;
+            background-color: var(--secondary-bg);
+        }
+
+        .registration-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .registration-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background-color: var(--primary-bg);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .optional {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: normal;
+        }
+
+        .referral-code {
+            background-color: #f8f0f0;
+            border: 2px dashed var(--accent-color);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+        }
+
+        .checkbox-label {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .terms-link {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #6a001b;
+        }
+
+        .login-redirect {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--text-light);
+        }
+
+        .login-redirect a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-redirect a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-text {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .footer-desc {
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-buttons {
+                display: none;
+            }
+            
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+            
+            .registration {
+                padding: 120px 0 60px;
+            }
+            
+            .registration-container {
+                padding: 30px 20px;
+            }
+            
+            .registration-title {
+                font-size: 1.8rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .registration-title {
+                font-size: 1.6rem;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <header>
+        <div class="container nav-container">
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#services-section">خدماتنا</a></li>
+                <li><a href="faq.html">اسئلة ومعلومات</a></li>
+            </ul>
+            
+            <!-- Centered Logo with Link -->
+            <a href="index.html" class="logo">
+                <img src="/img/logo.png" alt="HORRAN Logo" class="logo-img">
+                <span class="logo-text">HORRAN</span>
+            </a>
+            
+            <!-- Desktop Navigation Buttons -->
+            <div class="nav-buttons">
+                <a href="login.html" class="login-link">سجل الدخول</a>
+                <a href="index.html" class="btn-primary">العودة للرئيسية</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="registration">
+        <div class="container">
+            <div class="registration-container">
+                <h1 class="registration-title">أنشئ حساب جديد</h1>
+                
+                <form id="registrationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">الاسم الأول</label>
+                            <input type="text" id="firstName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">الاسم الأخير</label>
+                            <input type="text" id="lastName" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="username" class="form-label">اسم المستخدم</label>
+                        <input type="text" id="username" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="form-label">رقم المحمول</label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referralCode" class="form-label">كود محال من</label>
+                        <input type="text" id="referralCode" class="form-input referral-code" placeholder="سيتم تعبئته تلقائياً من قاعدة البيانات">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="form-label">العنوان بالتفصيل <span class="optional">(اختياري)</span></label>
+                        <textarea id="address" class="form-input" rows="3" placeholder="اكتب عنوانك بالتفصيل (اختياري)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">كلمة المرور</label>
+                        <input type="password" id="password" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                        <input type="password" id="confirmPassword" class="form-input" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms" class="checkbox-label">
+                            أوافق على <a href="#" class="terms-link">الشروط والأحكام</a> و <a href="#" class="terms-link">سياسة الخصوصية</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">تسجيل الحساب</button>
+                    
+                    <div class="login-redirect">
+                        لديك حساب بالفعل؟ <a href="login.html">سجل الدخول هنا</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <img src="/img/1 copy.jpg" alt="HORRAN Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">HORRAN</span>
+                    </a>
+                    <p class="footer-desc">By Ibrahim Wswas</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">تواصل</h3>
+                    <div class="footer-contact">
+                        <p>+20 01096798751</p>
+                        <p>ibrahimwswas16@gmail.com</p>
+                        <p>horran16@gmail.com</p>
+                        <p>كفر الشيخ - بيلا - شارع عبدالوهاب أبوغالي</p>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services-section">خدماتنا</a></li>
+                        <li><a href="new.html">جديدنا</a></li>
+                        <li><a href="faq.html">اسئلة ومعلومات</a></li>
+                        <li><a href="login.html">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 HORRAN. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form validation and submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const registrationForm = document.getElementById('registrationForm');
+            
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const referralCode = document.getElementById('referralCode').value;
+                const address = document.getElementById('address').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                
+                // Basic validation
+                if (password !== confirmPassword) {
+                    alert('كلمة المرور وتأكيد كلمة المرور غير متطابقين');
+                    return;
+                }
+                
+                if (!agreeTerms) {
+                    alert('يجب الموافقة على الشروط والأحكام');
+                    return;
+                }
+                
+                // Prepare data for submission
+                const formData = {
+                    firstName,
+                    lastName,
+                    username,
+                    email,
+                    phone,
+                    referralCode,
+                    address,
+                    password,
+                    agreeTerms
+                };
+                
+                // In a real application, you would send this data to a server
+                console.log('بيانات التسجيل:', formData);
+                
+                // Show success message
+                alert('تم إنشاء الحساب بنجاح! سيتم تحويلك إلى صفحة الدخول.');
+                
+                // Redirect to login page (in a real application)
+                // window.location.href = 'login.html';
+            });
+            
+            // Simulate auto-filling referral code from database
+            // In a real application, this would come from the server based on the referring user
+            function simulateReferralCode() {
+                // Generate a random referral code (in real app, this comes from DB)
+                const referralCode = 'HOR' + Math.random().toString(36).substr(2, 5).toUpperCase();
+                document.getElementById('referralCode').value = referralCode;
+            }
+            
+            // Simulate referral code when page loads (for demonstration)
+            // In a real application, this would only happen if the user came from a referral link
+            simulateReferralCode();
+        });
+    </script>
+</body>
+</html>
